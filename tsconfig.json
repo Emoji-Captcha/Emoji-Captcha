@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "incremental": true,
+    "outDir": "./lib/esm"
+  },
+  "include": [
+    "./src",
+    "./scripts/"
+  ]
+}

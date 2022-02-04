@@ -1,0 +1,385 @@
+[{
+		"name": "animal-amphibian",
+		"count": 1
+	},
+	{
+		"name": "animal-bird",
+		"count": 18
+	},
+	{
+		"name": "animal-bug",
+		"count": 16
+	},
+	{
+		"name": "animal-mammal",
+		"count": 64
+	},
+	{
+		"name": "animal-marine",
+		"count": 10
+	},
+	{
+		"name": "animal-reptile",
+		"count": 8
+	},
+	{
+		"name": "arrow",
+		"count": 21
+	},
+	{
+		"name": "arts & crafts",
+		"count": 7
+	},
+	{
+		"name": "av-symbol",
+		"count": 24
+	},
+	{
+		"name": "award-medal",
+		"count": 6
+	},
+	{
+		"name": "body-parts",
+		"count": 17
+	},
+	{
+		"name": "book-paper",
+		"count": 17
+	},
+	{
+		"name": "cat-face",
+		"count": 9
+	},
+	{
+		"name": "clothing",
+		"count": 44
+	},
+	{
+		"name": "computer",
+		"count": 13
+	},
+	{
+		"name": "country-flag",
+		"count": 258
+	},
+	{
+		"name": "currency",
+		"count": 2
+	},
+	{
+		"name": "dishware",
+		"count": 6
+	},
+	{
+		"name": "drink",
+		"count": 19
+	},
+	{
+		"name": "emotion",
+		"count": 37
+	},
+	{
+		"name": "event",
+		"count": 21
+	},
+	{
+		"name": "face-affection",
+		"count": 9
+	},
+	{
+		"name": "face-concerned",
+		"count": 24
+	},
+	{
+		"name": "face-costume",
+		"count": 8
+	},
+	{
+		"name": "face-glasses",
+		"count": 3
+	},
+	{
+		"name": "face-hand",
+		"count": 4
+	},
+	{
+		"name": "face-hat",
+		"count": 3
+	},
+	{
+		"name": "face-negative",
+		"count": 8
+	},
+	{
+		"name": "face-neutral-skeptical",
+		"count": 12
+	},
+	{
+		"name": "face-sleepy",
+		"count": 5
+	},
+	{
+		"name": "face-smiling",
+		"count": 13
+	},
+	{
+		"name": "face-tongue",
+		"count": 6
+	},
+	{
+		"name": "face-unwell",
+		"count": 12
+	},
+	{
+		"name": "family",
+		"count": 38
+	},
+	{
+		"name": "flag",
+		"count": 8
+	},
+	{
+		"name": "food-asian",
+		"count": 17
+	},
+	{
+		"name": "food-fruit",
+		"count": 19
+	},
+	{
+		"name": "food-marine",
+		"count": 5
+	},
+	{
+		"name": "food-prepared",
+		"count": 34
+	},
+	{
+		"name": "food-sweet",
+		"count": 14
+	},
+	{
+		"name": "food-vegetable",
+		"count": 15
+	},
+	{
+		"name": "game",
+		"count": 23
+	},
+	{
+		"name": "gender",
+		"count": 3
+	},
+	{
+		"name": "geometric",
+		"count": 34
+	},
+	{
+		"name": "hand-fingers-closed",
+		"count": 6
+	},
+	{
+		"name": "hand-fingers-open",
+		"count": 5
+	},
+	{
+		"name": "hand-fingers-partial",
+		"count": 8
+	},
+	{
+		"name": "hand-prop",
+		"count": 3
+	},
+	{
+		"name": "hand-single-finger",
+		"count": 6
+	},
+	{
+		"name": "hands",
+		"count": 6
+	},
+	{
+		"name": "hotel",
+		"count": 2
+	},
+	{
+		"name": "household",
+		"count": 24
+	},
+	{
+		"name": "light & video",
+		"count": 16
+	},
+	{
+		"name": "lock",
+		"count": 6
+	},
+	{
+		"name": "mail",
+		"count": 13
+	},
+	{
+		"name": "math",
+		"count": 5
+	},
+	{
+		"name": "medical",
+		"count": 5
+	},
+	{
+		"name": "money",
+		"count": 10
+	},
+	{
+		"name": "monkey-face",
+		"count": 3
+	},
+	{
+		"name": "music",
+		"count": 9
+	},
+	{
+		"name": "musical-instrument",
+		"count": 9
+	},
+	{
+		"name": "office",
+		"count": 23
+	},
+	{
+		"name": "other-object",
+		"count": 5
+	},
+	{
+		"name": "other-symbol",
+		"count": 18
+	},
+	{
+		"name": "person",
+		"count": 28
+	},
+	{
+		"name": "person-activity",
+		"count": 39
+	},
+	{
+		"name": "person-fantasy",
+		"count": 31
+	},
+	{
+		"name": "person-gesture",
+		"count": 30
+	},
+	{
+		"name": "person-resting",
+		"count": 5
+	},
+	{
+		"name": "person-role",
+		"count": 79
+	},
+	{
+		"name": "person-sport",
+		"count": 43
+	},
+	{
+		"name": "person-symbol",
+		"count": 5
+	},
+	{
+		"name": "phone",
+		"count": 6
+	},
+	{
+		"name": "place-building",
+		"count": 27
+	},
+	{
+		"name": "place-geographic",
+		"count": 9
+	},
+	{
+		"name": "place-map",
+		"count": 7
+	},
+	{
+		"name": "place-other",
+		"count": 16
+	},
+	{
+		"name": "place-religious",
+		"count": 6
+	},
+	{
+		"name": "plant-flower",
+		"count": 10
+	},
+	{
+		"name": "plant-other",
+		"count": 13
+	},
+	{
+		"name": "punctuation",
+		"count": 7
+	},
+	{
+		"name": "religion",
+		"count": 12
+	},
+	{
+		"name": "science",
+		"count": 7
+	},
+	{
+		"name": "sky & weather",
+		"count": 47
+	},
+	{
+		"name": "sound",
+		"count": 9
+	},
+	{
+		"name": "sport",
+		"count": 26
+	},
+	{
+		"name": "subdivision-flag",
+		"count": 3
+	},
+	{
+		"name": "time",
+		"count": 31
+	},
+	{
+		"name": "tool",
+		"count": 25
+	},
+	{
+		"name": "transport-air",
+		"count": 13
+	},
+	{
+		"name": "transport-ground",
+		"count": 49
+	},
+	{
+		"name": "transport-sign",
+		"count": 13
+	},
+	{
+		"name": "transport-water",
+		"count": 8
+	},
+	{
+		"name": "warning",
+		"count": 13
+	},
+	{
+		"name": "writing",
+		"count": 7
+	},
+	{
+		"name": "zodiac",
+		"count": 13
+	}
+]
