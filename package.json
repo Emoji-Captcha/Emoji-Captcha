@@ -1,6 +1,6 @@
 {
   "name": "@emoji-captcha/server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Add emoji captchas in your forms",
   "author": "Shivam",
   "license": "MIT",
