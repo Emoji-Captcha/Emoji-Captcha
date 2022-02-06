@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "prepublish": "yarn tsc"
+    "prepare": "npm run tsc"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.0",
