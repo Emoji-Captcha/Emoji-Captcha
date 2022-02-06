@@ -7,13 +7,7 @@ import { fileURLToPath } from "url";
 import { readFileSync, writeFileSync } from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-// const getRandomSubgroups = (count = 3) => {
-//   for (let i = 0; i < count; i++) {
-//     const randomGroupIdx = Math.floor(Math.random() * emojiGroups.length);
-//     const randomGroup = emojiGroups[randomGroupIdx];
-//     console.log(randomGroup);
-//   }
-// };
+
 // getRandomSubgroups();
 //
 
