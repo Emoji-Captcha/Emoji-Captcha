@@ -40,9 +40,7 @@ export const generateEmoji = async ({
   const emojiGroups = getRandomGroups(emojiCount, subgroups);
   const emojis = await pickRandomEmojisFromGroup(emojiGroups);
 
-  const encodedSvgs = emojis.map((emoji) =>
-    Buffer.from(emoji.svg).toString("base64")
-  );
+  const encodedSvgs = emojis.map((emoji) => btoa(emoji.svg));
   const randomEmojiIdx = getRandomFromMax(emojis.length).toString();
 
   return {

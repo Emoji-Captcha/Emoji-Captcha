@@ -35,7 +35,9 @@ export const pickRandomEmojisFromGroup = async (groups: Set<ISubgroup>) => {
 
   // get random emoji from all group
   for (const group of groups) {
-    const emojiList: IEmoji[] = await import(`./data/${group.name}.json`);
+    const emojiList: IEmoji[] = await import(
+      /* webpackMode: "eager" */ `./data/${group.name}.json`
+    );
     const randEmojiIdx = getRandomFromMax(group.count);
     emojis.push(emojiList[randEmojiIdx]);
   }
