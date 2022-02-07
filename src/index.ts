@@ -1,69 +1,28 @@
-import emojiGroups from "./data/emoji_groups.json";
+import { aesGcmDecrypt, aesGcmEncrypt } from "./encryption";
+import { GenerateEmojiParams, IEmojiRes, VerifyEmojiParams } from "./types";
+import {
+  getRandomFromMax,
+  getRandomGroups,
+  pickRandomEmojisFromGroup,
+} from "./utils";
 
-import { aesGcmEncrypt } from "./encryption";
-import { getRandomFromMax } from "./utils";
-
-export interface IEmojiRes {
-  question: string;
-  answer: string;
-  emojis: string[];
-}
-
-interface GenerateEmojiParams {
-  emojiCount?: number;
-  secret: string;
-}
+import subgroups from "./data/emoji_groups.json";
 
 /**
- * Get random group names collection from 100+ subgroups
+ * @typedef {Object} GeneratorOptions
+ * @property {number} emojiCount
+ * Number of emojis you want in your array
+ * min 3 max 10 default to 3
+ * @property {string} secret
+ * A secret key which will be used for
+ * encrypting and decrypting the answer
  */
-const getRandomGroups = (count: number) => {
-  // will have all the names of subgroups
-  const groups = new Set<typeof emojiGroups[number]>();
 
-  const getRandomGroupName = () => {
-    const randomGroupIdx = getRandomFromMax(emojiGroups.length);
-    return emojiGroups[randomGroupIdx];
-  };
-
-  const generateGroupNames = () => {
-    const randGroup = getRandomGroupName();
-    if (groups.has(randGroup)) {
-      return generateGroupNames();
-    }
-    groups.add(randGroup);
-  };
-
-  // Calls generateGroupNames for `count` times
-  Array.from({ length: count }, generateGroupNames);
-
-  return groups;
-};
-
-interface IEmoji {
-  emoji: string;
-  name: string;
-  group: string;
-  sub_group: string;
-  codepoints: string;
-  svg: string;
-}
-
-const pickRandomEmojisFromGroup = async (
-  groups: Set<typeof emojiGroups[number]>
-) => {
-  const emojis: IEmoji[] = [];
-
-  // get random emoji from all group
-  for (const group of groups) {
-    const emojiList: IEmoji[] = await import(`./data/${group.name}.json`);
-    const randEmojiIdx = getRandomFromMax(group.count);
-    emojis.push(emojiList[randEmojiIdx]);
-  }
-
-  return emojis;
-};
-
+/*
+ * Generates random emojis in base64
+ *
+ * @param {GeneratorOptions}
+ */
 export const generateEmoji = async ({
   emojiCount = 3,
   secret,
@@ -73,11 +32,12 @@ export const generateEmoji = async ({
       "You must pass a secret, which will be used to encrypt & decrypt answer"
     );
   }
+
   if (emojiCount > 10 || emojiCount < 3) {
     throw new Error("Emoji count needs to be in range of 3 to 10");
   }
 
-  const emojiGroups = getRandomGroups(emojiCount);
+  const emojiGroups = getRandomGroups(emojiCount, subgroups);
   const emojis = await pickRandomEmojisFromGroup(emojiGroups);
 
   const encodedSvgs = emojis.map((emoji) =>
@@ -92,6 +52,40 @@ export const generateEmoji = async ({
   };
 };
 
-generateEmoji({ emojiCount: 10, secret: "cool" }).then((data) =>
-  console.log(data)
-);
+export const verifyEmoji = async ({
+  selectedIdx,
+  answerHash,
+  secret,
+}: VerifyEmojiParams) => {
+  // check if all the params are passed
+  switch (undefined) {
+    case selectedIdx:
+      throw new Error("Selected index is required");
+
+    case answerHash:
+      throw new Error("Answer hash is required");
+
+    case secret:
+      throw new Error("Secret is required");
+
+    default:
+      break;
+  }
+
+  try {
+    const correctIdx = await aesGcmDecrypt({
+      ciphertext: answerHash,
+      password: secret,
+    });
+
+    if (+correctIdx === selectedIdx) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw new Error(
+      "Error occured while decrypting the cipher, Are you sure your hash and secret is correct?\n Error:" +
+        error
+    );
+  }
+};
