@@ -2,7 +2,7 @@
 
 Next gen captcha generator, which uses emojis to identify humans
 
-<img alt="emoji captcha demo" src="https://user-images.githubusercontent.com/23727670/153009883-e996b796-1a5e-4761-8f3c-a423c49614a5.gif" width="500"/>
+![emoji captcha demo](https://user-images.githubusercontent.com/23727670/153011705-020be005-a1ab-4d1c-9ec3-4c6ed9def762.gif)
 
 
 ## Server Installation
