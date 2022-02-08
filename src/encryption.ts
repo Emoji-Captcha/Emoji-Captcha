@@ -1,4 +1,10 @@
-const webcrypto: Crypto = crypto ?? require("crypto").webcrypto;
+let webcrypto: Crypto;
+
+if (typeof crypto !== "undefined") {
+  webcrypto = crypto;
+} else {
+  webcrypto = require("crypto").webcrypto;
+}
 
 /**
  * Encrypts plaintext using AES-GCM with supplied password, for decryption with aesGcmDecrypt().

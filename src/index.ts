@@ -7,6 +7,7 @@ import {
 } from "./utils";
 
 import subgroups from "./data/emoji_groups.json";
+import svgToTinyDataUri from "mini-svg-data-uri";
 
 /**
  * @typedef {Object} GeneratorOptions
@@ -25,6 +26,7 @@ import subgroups from "./data/emoji_groups.json";
  */
 export const generateEmoji = async ({
   emojiCount = 3,
+  encoding = "minified-uri",
   secret,
 }: GenerateEmojiParams): Promise<IEmojiRes> => {
   if (!secret) {
@@ -40,7 +42,32 @@ export const generateEmoji = async ({
   const emojiGroups = getRandomGroups(emojiCount, subgroups);
   const emojis = await pickRandomEmojisFromGroup(emojiGroups);
 
-  const encodedSvgs = emojis.map((emoji) => btoa(emoji.svg));
+  let encodedSvgs: string[];
+
+  // encode image based on the given options
+  switch (encoding) {
+    case "URL-encoded":
+      encodedSvgs = emojis.map(
+        (emoji) =>
+          "data:image/svg+xml;charset=US-ASCII," + encodeURIComponent(emoji.svg)
+      );
+      break;
+
+    case "base64":
+      encodedSvgs = emojis.map(
+        (emoji) => "data:image/svg+xml;base64," + btoa(emoji.svg)
+      );
+      break;
+    case "svg-xml":
+      encodedSvgs = emojis.map((emoji) => emoji.svg);
+      break;
+    case "minified-uri":
+      encodedSvgs = emojis.map((emoji) => svgToTinyDataUri(emoji.svg));
+      break;
+    default:
+      break;
+  }
+
   const randomEmojiIdx = getRandomFromMax(emojis.length).toString();
 
   return {

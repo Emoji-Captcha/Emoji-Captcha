@@ -6,6 +6,7 @@ export interface IEmojiRes {
 
 export interface GenerateEmojiParams {
   emojiCount?: number;
+  encoding?: "svg-xml" | "minified-uri" | "base64" | "URL-encoded";
   secret: string;
 }
 

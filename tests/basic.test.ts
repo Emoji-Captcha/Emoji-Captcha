@@ -17,6 +17,7 @@ test("Test emoji generator", async () => {
   expect(emojiRes).toHaveProperty("emojis");
   expect(emojiRes.emojis).toHaveLength(emojiCount);
 
+  console.log(emojiRes.emojis);
   console.log(`Got ${emojiRes.emojis.length} emojis`);
 
   // store the answer cypther index
