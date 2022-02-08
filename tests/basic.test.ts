@@ -11,7 +11,11 @@ const emojiCount = 5;
 let emojiAnswerCipher: string;
 
 test("Test emoji generator", async () => {
-  const emojiRes = await generateEmoji({ secret, emojiCount });
+  const emojiRes = await generateEmoji({
+    secret,
+    emojiCount,
+    encoding: "svg-xml",
+  });
   expect(emojiRes).toHaveProperty("question");
   expect(emojiRes).toHaveProperty("answer");
   expect(emojiRes).toHaveProperty("emojis");
