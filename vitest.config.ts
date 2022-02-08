@@ -3,7 +3,8 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   test: {
-    reporters: ["json", "verbose"],
+    reporters: ["json", "default"],
     outputFile: "./test-report.json",
+    watch: false,
   },
 });
