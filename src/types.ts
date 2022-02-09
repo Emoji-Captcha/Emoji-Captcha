@@ -6,6 +6,7 @@ export interface IEmojiRes {
 
 export interface GenerateEmojiParams {
   emojiCount?: number;
+  expiry?: number;
   encoding?: "svg-xml" | "minified-uri" | "base64" | "URL-encoded";
   secret: string;
 }
@@ -28,4 +29,9 @@ export interface IEmoji {
 export interface ISubgroup {
   name: string;
   count: number;
+}
+
+export interface IEncryptedData {
+  answerIdx: number;
+  validity: number;
 }

@@ -1,5 +1,10 @@
 import { aesGcmDecrypt, aesGcmEncrypt } from "./encryption";
-import { GenerateEmojiParams, IEmojiRes, VerifyEmojiParams } from "./types";
+import {
+  GenerateEmojiParams,
+  IEmojiRes,
+  IEncryptedData,
+  VerifyEmojiParams,
+} from "./types";
 import {
   getRandomFromMax,
   getRandomGroups,
@@ -27,6 +32,7 @@ import svgToTinyDataUri from "mini-svg-data-uri";
 export const generateEmoji = async ({
   emojiCount = 3,
   encoding = "minified-uri",
+  expiry = 120,
   secret,
 }: GenerateEmojiParams): Promise<IEmojiRes> => {
   if (!secret) {
@@ -68,10 +74,20 @@ export const generateEmoji = async ({
       break;
   }
 
-  const randomEmojiIdx = getRandomFromMax(emojis.length).toString();
+  const randomEmojiIdx = getRandomFromMax(emojis.length);
+
+  const encryptedData: IEncryptedData = {
+    answerIdx: randomEmojiIdx,
+    validity: Date.now() + expiry * 1000,
+  };
+
+  const answerToken = await aesGcmEncrypt(
+    JSON.stringify(encryptedData),
+    secret
+  );
 
   return {
-    answer: await aesGcmEncrypt(randomEmojiIdx, secret),
+    answer: answerToken,
     emojis: encodedSvgs,
     question: emojis[randomEmojiIdx].name,
   };
@@ -97,20 +113,18 @@ export const verifyEmoji = async ({
       break;
   }
 
-  try {
-    const correctIdx = await aesGcmDecrypt({
-      ciphertext: answerHash,
-      password: secret,
-    });
+  const answerTokenRaw = await aesGcmDecrypt({
+    ciphertext: answerHash,
+    password: secret,
+  });
+  const { answerIdx, validity }: IEncryptedData = JSON.parse(answerTokenRaw);
 
-    if (+correctIdx === selectedIdx) {
-      return true;
-    }
-    return false;
-  } catch (error) {
-    throw new Error(
-      "Error occured while decrypting the cipher, Are you sure your hash and secret is correct?\n Error:" +
-        error
-    );
+  if (Date.now() > validity) {
+    throw Error("Token expired");
   }
+
+  if (answerIdx === selectedIdx) {
+    return true;
+  }
+  return false;
 };

@@ -14,7 +14,8 @@
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "test": "yarn vitest",
-    "prepublishOnly": "yarn tsc && yarn test && npm version patch"
+    "prepare": "yarn tsc",
+    "prepublishOnly": "yarn test && npm version patch"
   },
   "devDependencies": {
     "@types/node": "^17.0.14",

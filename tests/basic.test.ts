@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { generateEmoji, verifyEmoji } from "../lib/cjs/index";
+import { generateEmoji, verifyEmoji } from "../lib/cjs";
 
 // Edit an assertion and save to see HMR in action
 
@@ -10,9 +10,12 @@ const emojiCount = 5;
 
 let emojiAnswerCipher: string;
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 test("Test emoji generator", async () => {
   const emojiRes = await generateEmoji({
     secret,
+    expiry: 1,
     emojiCount,
     encoding: "svg-xml",
   });
@@ -25,9 +28,11 @@ test("Test emoji generator", async () => {
 
   // store the answer cypther index
   emojiAnswerCipher = emojiRes.answer;
+  console.log(emojiRes.answer);
 });
 
 test("Test emoji verifier", async () => {
+  await sleep(596);
   const isCorrect = await verifyEmoji({
     secret,
     answerHash: emojiAnswerCipher,
