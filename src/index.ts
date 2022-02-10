@@ -29,20 +29,28 @@ import svgToTinyDataUri from "mini-svg-data-uri";
  *
  * @param {GeneratorOptions}
  */
-export const generateEmoji = async ({
-  emojiCount = 3,
-  encoding = "minified-uri",
-  expiry = 120,
-  secret,
-}: GenerateEmojiParams): Promise<IEmojiRes> => {
+export const generateEmoji = async (
+  params: GenerateEmojiParams
+): Promise<IEmojiRes> => {
+  if (!params) {
+    throw Error("No options passed");
+  }
+
+  const {
+    emojiCount = 3,
+    encoding = "minified-uri",
+    expiry = 120,
+    secret,
+  } = params;
+
   if (!secret) {
-    throw new Error(
+    throw Error(
       "You must pass a secret, which will be used to encrypt & decrypt answer"
     );
   }
 
   if (emojiCount > 10 || emojiCount < 3) {
-    throw new Error("Emoji count needs to be in range of 3 to 10");
+    throw Error("Emoji count needs to be in range of 3 to 10");
   }
 
   const emojiGroups = getRandomGroups(emojiCount, subgroups);
