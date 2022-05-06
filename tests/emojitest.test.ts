@@ -5,6 +5,7 @@ import { IEmojiRes } from "../lib/cjs/types";
 const secret = "I love my viewers";
 
 let emojiRes: IEmojiRes;
+
 describe("Test emoji generator", () => {
   test("Generate emoji", async () => {
     const emoji = await generateEmoji({ secret });
@@ -24,19 +25,19 @@ describe("Test emoji generator", () => {
   });
 });
 
-describe("Test emoji verify", () => {
-  it("Verify emoji answer", async () => {
-    const isCorrect = await verifyEmoji({
-      secret,
-      selectedIdx: 2,
-      answerHash: emojiRes.answer,
-    });
-    expect(typeof isCorrect === "boolean").toBeTruthy();
-  });
-
-  it("Should throw error", async () => {
-    await expect(
-      verifyEmoji({ secret: "alalala", selectedIdx: 10, answerHash: "" })
-    ).rejects.toThrow("Decrypt failed");
-  });
-});
+// describe("Test emoji verify", () => {
+//   it("Verify emoji answer", async () => {
+//     const isCorrect = await verifyEmoji({
+//       secret,
+//       selectedIdx: 2,
+//       answerHash: emojiRes.answer,
+//     });
+//     expect(typeof isCorrect === "boolean").toBeTruthy();
+//   });
+//
+//   it("Should throw error", async () => {
+//     await expect(
+//       verifyEmoji({ secret: "alalala", selectedIdx: 10, answerHash: "" })
+//     ).rejects.toThrow("Decrypt failed");
+//   });
+// });

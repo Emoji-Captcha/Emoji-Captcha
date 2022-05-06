@@ -7,7 +7,12 @@ export interface IEmojiRes {
 export interface GenerateEmojiParams {
   emojiCount?: number;
   expiry?: number;
-  encoding?: "svg-xml" | "minified-uri" | "base64" | "URL-encoded";
+  encoding?:
+    | "svg-xml"
+    | "minified-uri"
+    | "png-base64"
+    | "base64"
+    | "URL-encoded";
   secret: string;
 }
 

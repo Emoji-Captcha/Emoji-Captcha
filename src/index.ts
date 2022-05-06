@@ -13,6 +13,7 @@ import {
 
 import subgroups from "./data/emoji_groups.json";
 import svgToTinyDataUri from "mini-svg-data-uri";
+import { Resvg } from "@resvg/resvg-js";
 
 /**
  * @typedef {Object} GeneratorOptions
@@ -38,7 +39,7 @@ export const generateEmoji = async (
 
   const {
     emojiCount = 3,
-    encoding = "minified-uri",
+    encoding = "png-base64",
     expiry = 120,
     secret,
   } = params;
@@ -60,6 +61,16 @@ export const generateEmoji = async (
 
   // encode image based on the given options
   switch (encoding) {
+    case "png-base64":
+      encodedSvgs = emojis.map((emoji) => {
+        const resvg = new Resvg(emoji.svg, {
+          font: { loadSystemFonts: false },
+        });
+        const pngData = resvg.render();
+        return pngData.asPng().toString("base64");
+      });
+      break;
+
     case "URL-encoded":
       encodedSvgs = emojis.map(
         (emoji) =>
