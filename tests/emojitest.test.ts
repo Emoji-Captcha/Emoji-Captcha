@@ -14,7 +14,7 @@ describe("Test emoji generator", () => {
     expect(emoji).toHaveProperty("emojis");
 
     emojiRes = emoji;
-    console.log(JSON.stringify(emoji));
+    // console.log(JSON.stringify(emoji));
   });
   test("Throw error if secret not passed", async () => {
     await expect(generateEmoji({ secret: null })).rejects.toThrowError(
@@ -25,19 +25,19 @@ describe("Test emoji generator", () => {
   });
 });
 
-// describe("Test emoji verify", () => {
-//   it("Verify emoji answer", async () => {
-//     const isCorrect = await verifyEmoji({
-//       secret,
-//       selectedIdx: 2,
-//       answerHash: emojiRes.answer,
-//     });
-//     expect(typeof isCorrect === "boolean").toBeTruthy();
-//   });
-//
-//   it("Should throw error", async () => {
-//     await expect(
-//       verifyEmoji({ secret: "alalala", selectedIdx: 10, answerHash: "" })
-//     ).rejects.toThrow("Decrypt failed");
-//   });
-// });
+describe("Test emoji verify", () => {
+  it("Verify emoji answer", async () => {
+    const isCorrect = await verifyEmoji({
+      secret,
+      selectedIdx: 2,
+      answerHash: emojiRes.answer,
+    });
+    expect(typeof isCorrect === "boolean").toBeTruthy();
+  });
+
+  it("Should throw error", async () => {
+    await expect(
+      verifyEmoji({ secret: "alalala", selectedIdx: 10, answerHash: "" })
+    ).rejects.toThrow("Decrypt failed");
+  });
+});

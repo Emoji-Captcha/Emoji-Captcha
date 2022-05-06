@@ -3,18 +3,18 @@ lockfileVersion: 5.4
 specifiers:
   '@resvg/resvg-js': ^2.0.0
   '@types/node': ^17.0.14
+  fast-xml-parser: ^4.0.7
   mini-svg-data-uri: 1.4.3
-  tsc: ^2.0.4
   typescript: ^4.6.4
   vitest: ^0.3.1
 
 dependencies:
   '@resvg/resvg-js': 2.0.0
+  fast-xml-parser: 4.0.7
   mini-svg-data-uri: 1.4.3
 
 devDependencies:
   '@types/node': 17.0.31
-  tsc: 2.0.4
   typescript: 4.6.4
   vitest: 0.3.6
 
@@ -396,6 +396,13 @@ packages:
       esbuild-windows-arm64: 0.14.38
     dev: true
 
+  /fast-xml-parser/4.0.7:
+    resolution: {integrity: sha512-dMtibyus3kC7nbxj1CpVtysLzO13UOAZEFAb5vpQg3T4O6qvetmSePpXKFx5KPNCHKoGwjtgjfF5DOyn7s1ylQ==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
+    dev: false
+
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -490,6 +497,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /strnum/1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+    dev: false
+
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -503,11 +514,6 @@ packages:
   /tinyspy/0.2.10:
     resolution: {integrity: sha512-Qij6rGWCDjWIejxCXXVi6bNgvrYBp3PbqC4cBP/0fD6WHDOHCw09Zd13CsxrDqSR5PFq01WeqDws8t5lz5sH0A==}
     engines: {node: '>=14.0.0'}
-    dev: true
-
-  /tsc/2.0.4:
-    resolution: {integrity: sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==}
-    hasBin: true
     dev: true
 
   /type-detect/4.0.8:

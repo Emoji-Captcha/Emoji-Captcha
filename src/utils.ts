@@ -1,7 +1,12 @@
+import { XMLParser } from "fast-xml-parser";
 import { IEmoji, ISubgroup } from "./types";
 
 export const getRandomFromMax = (max: number) => {
   return Math.floor(Math.random() * max);
+};
+
+export const getRandomFloatFromMax = (max: number) => {
+  return +(Math.random() * max).toFixed(3);
 };
 
 /**
@@ -43,4 +48,30 @@ export const pickRandomEmojisFromGroup = async (groups: Set<ISubgroup>) => {
   }
 
   return emojis;
+};
+
+export const disortSvg = (emojis: IEmoji[]) => {
+  const xmlParser = new XMLParser({ stopNodes: ["svg"] });
+
+  return emojis.map((emoji) => {
+    const parsed: { svg: string } = xmlParser.parse(emoji.svg);
+
+    const randFreq = getRandomFloatFromMax(5);
+
+    const modifiedSvg = `
+<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 36 36\">
+  <filter id="displacementFilter">
+    <feTurbulence type="turbulence" baseFrequency="${randFreq}"
+        numOctaves="10" result="turbulence"/>
+    <feDisplacementMap in2="turbulence" in="SourceGraphic"
+        scale="5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <g style="filter: url(#displacementFilter)">
+    ${parsed.svg}
+  </g>
+</svg>
+`;
+
+    return { ...emoji, svg: modifiedSvg };
+  });
 };

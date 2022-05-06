@@ -6,6 +6,7 @@ import {
   VerifyEmojiParams,
 } from "./types";
 import {
+  disortSvg,
   getRandomFromMax,
   getRandomGroups,
   pickRandomEmojisFromGroup,
@@ -55,7 +56,9 @@ export const generateEmoji = async (
   }
 
   const emojiGroups = getRandomGroups(emojiCount, subgroups);
-  const emojis = await pickRandomEmojisFromGroup(emojiGroups);
+  const rawEmojis = await pickRandomEmojisFromGroup(emojiGroups);
+
+  const emojis = disortSvg(rawEmojis);
 
   let encodedSvgs: string[];
 
