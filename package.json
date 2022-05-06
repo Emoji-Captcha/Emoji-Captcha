@@ -1,6 +1,6 @@
 {
   "name": "@emoji-captcha/server",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Add emoji captchas in your forms",
   "repository": "github:Emoji-Captcha/Emoji-captcha-server",
   "author": "Shivam",
