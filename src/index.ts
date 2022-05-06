@@ -70,20 +70,22 @@ export const generateEmoji = async (
           font: { loadSystemFonts: false },
         });
         const pngData = resvg.render();
-        return pngData.asPng().toString("base64");
+        const b64 = pngData.asPng().toString("base64");
+        return `data:image/png;base64,${b64}`;
       });
+
       break;
 
     case "URL-encoded":
       encodedSvgs = emojis.map(
         (emoji) =>
-          "data:image/svg+xml;charset=US-ASCII," + encodeURIComponent(emoji.svg)
+          `data:image/svg+xml;charset=US-ASCII,${encodeURIComponent(emoji.svg)}`
       );
       break;
 
     case "base64":
       encodedSvgs = emojis.map(
-        (emoji) => "data:image/svg+xml;base64," + btoa(emoji.svg)
+        (emoji) => `data:image/svg+xml;base64,${btoa(emoji.svg)}`
       );
       break;
     case "svg-xml":
